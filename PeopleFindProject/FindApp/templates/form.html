@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{data.prefix_name}}{{data.name}} {{data.last_name }}</title>
+    <link rel="icon" href="/media/{{ data.image }}/" type="image/gif" sizes="16x16">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+</head>
+<body>
+    
+        <a href="/media/{{ data.image }}/"><img src="/media/{{ data.image }}/" width="82" height="86" ></a>
+        <p>ชื่อ​ : {{data.prefix_name}} {{data.name}} {{data.last_name }} </p>
+        <p>E-mail : {{data.email}}</p>
+        <p>ตำแหน่ง {{position.title}} </p>
+        <p>ภาควิชา {{department.name}} </p>
+        <p>เบอร์โต๊ะ {{data.table_no}} </p>
+        <p>เบอร์ห้อง {{data.room_no}} </p>
+        <p>เพิ่มเติม {{data.memo}} </p>
+
+        <form action="/form/{{ data.pk }}/" method="post">{% csrf_token %}
+            <input id="name"        name="name"         value="{{ data.name }}">
+            <input id="last_name"   name="last_name"    value="{{ data.last_name }}">
+            <input id="email"       name="email"             value="{{data.email}}">
+            <input type="submit" value="OK">
+        </form>
+
+</body>
+</html>

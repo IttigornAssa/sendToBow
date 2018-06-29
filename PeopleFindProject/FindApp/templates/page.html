@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{profile.prefix_name}}{{profile.name}} {{profile.last_name }}</title>
+    <link rel="icon" href="/media/{{ profile.image }}/" type="image/gif" sizes="16x16">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+</head>
+<body>
+    
+        <a href="/media/{{ profile.image }}/"><img src="/media/{{ profile.image }}/" width="150" height="150" ></a>
+        <p>ชื่อ​ : {{profile.prefix_name}} {{profile.name}} {{profile.last_name }} </p>
+        <p>E-mail : {{profile.email}}</p>
+        <p>ตำแหน่ง {{position.title}} </p>
+        <p>ภาควิชา {{department.name}} </p>
+        <p>เบอร์โต๊ะ {{profile.table_no}} </p>
+        <p>เบอร์ห้อง {{profile.room_no}} </p>
+        <p>เพิ่มเติม {{profile.memo}} </p>
+        
+        <a href="{% url 'FindApp:form' profile.pk %}">Edit</a>
+
+</body>
+</html>
