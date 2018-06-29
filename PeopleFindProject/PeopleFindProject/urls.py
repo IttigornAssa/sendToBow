@@ -23,7 +23,7 @@ urlpatterns = [
     # path('', include('FindApp.urls', namespace='FindApp')),
     path('', include('FindApp.urls')),
     path('oauth/', include('social_django.urls', namespace='social')),
-    path('logout/', auth_views.logout, name='logout'),
+    path('logout/', auth_views.logout, {'next_page': '/'} , name='logout'),
 ]
 if settings.DEBUG:
 	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

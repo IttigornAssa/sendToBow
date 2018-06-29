@@ -11,19 +11,8 @@
         <!-- <​a​ href=​"{% url 'social:begin' 'tu' %}"​>Login with TU</​a>​<​br​> -->
         <a href="{% url 'social:begin' 'tu' %}">Login with TU</a><br>
         {{user.username}} <br>
+        <a href="{% url 'FindApp:form' %}">Edit Your Profile</a><br>
         <a href="{% url 'logout' %}"> Logout </a>
-        {% for name in profile %}
-            <a href="{% url 'FindApp:page' name.pk %}"><p>{{ name.name }} {{ name.last_name }}</p></a>
-            <!-- <a href="/media/{{ name.image }}/"><img src="/media/{{ name.image }}/" width="82" height="86" ></a> -->
-        {% endfor %}
-        <br>
-        {% for name in department %}
-            <li>{{ name.name }}</li>
-        {% endfor %}
-
-        <form>
-
-        </form>
 
 </body>
 </html>

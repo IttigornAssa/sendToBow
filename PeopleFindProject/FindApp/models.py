@@ -10,6 +10,7 @@ class Department(models.Model):
         return self.name
 
 class Profiles(models.Model):
+    # role        = models.Interger
     prefix_name = models.CharField(max_length=50,null=True)
     name        = models.CharField(max_length=50,null=True)
     mid_name    = models.CharField(max_length=50,null=True,blank=True)
