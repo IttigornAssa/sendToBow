@@ -2,6 +2,7 @@ from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from django.forms import ModelForm
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import User
 # Create your models here.
 
 class Department(models.Model):
@@ -10,7 +11,8 @@ class Department(models.Model):
         return self.name
 
 class Profiles(models.Model):
-    # role        = models.Interger
+    account     = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
+    role        = models.IntegerField()
     prefix_name = models.CharField(max_length=50,null=True)
     name        = models.CharField(max_length=50,null=True)
     mid_name    = models.CharField(max_length=50,null=True,blank=True)
