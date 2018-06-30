@@ -15,6 +15,30 @@
                 {{f.labels}}
                 <br>
             {% endfor %}
+            {% for f in formPosition %}
+                {{f.name}}
+                {{f}}
+                {{f.labels}}
+            {% endfor %}
+            <br>
+            {% for f in formJobdiscription %}
+                {{f.name}}
+                {{f}}
+                {{f.labels}}
+            {% endfor %}
+            <br>
+            {% for f in formSubdivision %}
+                {{f.name}}
+                {{f}}
+                {{f.labels}}
+            {% endfor %}
+            <br>
+            {% for f in formDivision %}
+                {{f.name}}
+                {{f}}
+                {{f.labels}}
+            {% endfor %}
+            <br>
             <input type="submit" value="Submit" />
         </form>
         

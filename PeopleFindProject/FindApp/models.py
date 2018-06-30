@@ -31,12 +31,13 @@ class Position(models.Model):
     title    = models.CharField(max_length=50,null=True,blank=True)
     profile  = models.ForeignKey(Profiles,on_delete=models.SET_NULL,null=True)
     def __str__(self):
-        return "%s %s" % (self.title,self.profile)
+        # return "%s %s" % (self.title,self.profile)
+        return self.title
 class JobDiscription(models.Model):
     discription        = models.CharField(max_length=59,null=True,blank=True)
     position           = models.ForeignKey(Position,on_delete=models.SET_NULL,null=True)
     def __str__(self):
-        return self.name
+        return self.discription
 class SubDivision(models.Model):
     name        = models.CharField(max_length=50,null=True,blank=True)
     position    = models.ForeignKey(Position,on_delete=models.SET_NULL,null=True)
@@ -50,12 +51,27 @@ class Division(models.Model):
 
 class ProfilesForm(ModelForm):
     class Meta:
-        model = Profiles
-        fields = '__all__'
-        labels = {
+        model   = Profiles
+        fields  = '__all__'
+        labels  = {
             "prefix_name" : _("คำนำหน้า")
         }
-
-        # exclude = ['prefix_name']
+        exclude = ['account']
         # fields = ('prefix_name','name','mid_name','last_name','image','email','table_no','position','room_no','department','memo')
         # exclude = ('prefix_name','name','mid_name','last_name','image','email','table_no','position','room_no','department','memo')
+class PositionForm(ModelForm):
+    class Meta:
+        model   = Position
+        fields  = '__all__'
+class JobDiscriptionForm(ModelForm):
+    class Meta:
+        model   = JobDiscription
+        fields  = '__all__'
+class SubDivisionForm(ModelForm):
+    class Meta:
+        model   = SubDivision
+        fields  = '__all__'
+class DivisionForm(ModelForm):
+    class Meta:
+        model   = Division
+        fields  = '__all__'
