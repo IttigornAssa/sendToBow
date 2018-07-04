@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'tuauth',
     'django_extensions',
     'phonenumber_field',
+    'rest_framework',
 ]
 AUTHENTICATION_BACKENDS = (
     'tuauth.backend.TUOAuth2',
@@ -148,4 +149,4 @@ STATICFILES_DIRS = [
 ]
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
-# LOGIN_REDIRECT_URL = ''
+LOGIN_REDIRECT_URL = '/'

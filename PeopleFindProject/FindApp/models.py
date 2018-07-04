@@ -1,14 +1,35 @@
+import json
+import requests
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from django.forms import ModelForm
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
+from django.contrib.auth.signals import user_logged_in
 # Create your models here.
 
 class Department(models.Model):
     name = models.CharField(max_length=50,null=True)
     def __str__(self):
         return self.name
+
+class Division(models.Model):
+    title        = models.CharField(max_length=50,null=True,blank=True)
+    def __str__(self):
+        return self.title
+
+class SubDivision(models.Model):
+    title       = models.CharField(max_length=50,null=True,blank=True)
+    division    = models.ForeignKey(Division,on_delete=models.SET_NULL,null=True)
+    def __str__(self):
+        return self.title
+
+class Position(models.Model):
+    title       = models.CharField(max_length=50,null=True,blank=True)
+    subdivision = models.ForeignKey(SubDivision,on_delete=models.SET_NULL,null=True)
+    def __str__(self):
+        # return self.title
+        return '%s %s'%(self.title,self.subdivision)
 
 class Profiles(models.Model):
     account     = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
@@ -21,33 +42,18 @@ class Profiles(models.Model):
     email       = models.EmailField(max_length=100,null=True)
     table_no    = models.CharField(max_length=50,null=True,blank=True)
     room_no     = models.CharField(max_length=50,null=True,blank=True)
+    position    = models.ForeignKey(Position,on_delete=models.SET_NULL,null=True)
     department  = models.ForeignKey(Department,on_delete=models.SET_NULL,null=True)
     phone       = PhoneNumberField()
     memo        = models.CharField(max_length=99,null=True,blank=True)
     def __str__(self):
         return self.name
 
-class Position(models.Model):
-    title    = models.CharField(max_length=50,null=True,blank=True)
-    profile  = models.ForeignKey(Profiles,on_delete=models.SET_NULL,null=True)
-    def __str__(self):
-        # return "%s %s" % (self.title,self.profile)
-        return self.title
 class JobDiscription(models.Model):
-    discription        = models.CharField(max_length=59,null=True,blank=True)
-    position           = models.ForeignKey(Position,on_delete=models.SET_NULL,null=True)
+    discription   = models.CharField(max_length=99,null=True,blank=True)
+    position      = models.ForeignKey(Position,on_delete=models.SET_NULL,null=True)
     def __str__(self):
         return self.discription
-class SubDivision(models.Model):
-    name        = models.CharField(max_length=50,null=True,blank=True)
-    position    = models.ForeignKey(Position,on_delete=models.SET_NULL,null=True)
-    def __str__(self):
-        return self.name
-class Division(models.Model):
-    name        = models.CharField(max_length=50,null=True,blank=True)
-    subdivition = models.ForeignKey(SubDivision,on_delete=models.SET_NULL,null=True)
-    def __str__(self):
-        return self.name
 
 class ProfilesForm(ModelForm):
     class Meta:
@@ -56,9 +62,7 @@ class ProfilesForm(ModelForm):
         labels  = {
             "prefix_name" : _("คำนำหน้า")
         }
-        exclude = ['account']
-        # fields = ('prefix_name','name','mid_name','last_name','image','email','table_no','position','room_no','department','memo')
-        # exclude = ('prefix_name','name','mid_name','last_name','image','email','table_no','position','room_no','department','memo')
+        exclude = ['account','role']
 class PositionForm(ModelForm):
     class Meta:
         model   = Position
@@ -67,11 +71,40 @@ class JobDiscriptionForm(ModelForm):
     class Meta:
         model   = JobDiscription
         fields  = '__all__'
+        # exclude = ['position']
 class SubDivisionForm(ModelForm):
     class Meta:
         model   = SubDivision
         fields  = '__all__'
+        # exclude = ['position']
 class DivisionForm(ModelForm):
     class Meta:
         model   = Division
         fields  = '__all__'
+
+def logged_in_handle(sender, user, request, **kwargs):
+    #
+    # Check if TU login
+    prov = user.social_auth.filter(provider='tu')
+    if prov.exists():
+        data    = prov[0].extra_data
+        headers = {"Authorization": "Bearer {}".format(data['access_token'])}
+        api     = requests.get('https://api.tu.ac.th/api/me/', headers=headers).json()
+        if api['company']=='คณะวิทยาศาสตร์และเทคโนโลยี':
+            if api['role']=='1':
+                print("API : ",api)
+                print("api['username'] :",api['username'])
+                print(Profiles.objects.all())
+                index   = User.objects.all().filter(username=api['username'])[0]
+                profile = Profiles.objects.filter(account=index)
+                print("Profile : ",profile)
+                if not profile.exists():
+                    print("profile not exists")
+                    create_init_department = Department.objects.update_or_create(name=api['department'])
+                    create_init_profile     = Profiles.objects.create(
+                        account = index,
+                        name    = api['firstname'],
+                        role    = api['role'],
+                        last_name = api['lastname'],
+                    )
+user_logged_in.connect(logged_in_handle)
