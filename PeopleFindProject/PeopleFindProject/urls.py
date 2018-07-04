@@ -18,12 +18,15 @@ from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
+from api.routers import router
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', include('FindApp.urls', namespace='FindApp')),
     path('', include('FindApp.urls')),
     path('oauth/', include('social_django.urls', namespace='social')),
     path('logout/', auth_views.logout, {'next_page': '/'} , name='logout'),
+    path('api-auth/', include('rest_framework.urls')),
+    path('api/',include(router.urls)),
 ]
 if settings.DEBUG:
 	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
