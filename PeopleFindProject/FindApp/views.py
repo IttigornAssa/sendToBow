@@ -16,7 +16,7 @@ def Profile(request):
     
 
 def page(request,pk):
-    profile     = Profiles.objects.all().filter(pk=pk).values('pk', 'prefix_name','name','mid_name','last_name','image','email','table_no','position','room_no','department','memo')[0]
+    profile     = Profiles.objects.all().filter(pk=pk).values('pk', 'prefix_name','name','mid_name','last_name','image','email','table_no','position','room_no','department','memo','phone')[0]
     print(profile)
     position    = Position.objects.all().filter(pk=profile['position']).values('title')[0]
     department  = Department.objects.all().filter(id=profile['department']).values('name')[0]

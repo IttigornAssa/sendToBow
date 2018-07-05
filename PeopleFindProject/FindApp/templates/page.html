@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}{{profile.prefix_name}}{{profile.name}} {{profile.last_name }}{% endblock %}
 {% block content %}    
+        
         <a href="/media/{{ profile.image }}/"><img src="/media/{{ profile.image }}/" width="150" height="150" ></a>
         <p>ชื่อ​ : {{profile.prefix_name}} {{profile.name}} {{profile.last_name }} </p>
         <p>E-mail : {{profile.email}}</p>
@@ -9,4 +10,5 @@
         <p>เบอร์โต๊ะ {{profile.table_no}} </p>
         <p>เบอร์ห้อง {{profile.room_no}} </p>
         <p>เพิ่มเติม {{profile.memo}} </p>
+        <p>เบอร์โทร {{profile.phone}} </p>
 {% endblock %}

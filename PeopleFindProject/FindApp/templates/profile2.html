@@ -10,10 +10,36 @@
         {% else %}
         <a href="{% url 'social:begin' 'tu' %}">Login with TU</a><br>
         {% endif %}
-
+        <br>
+        <!-- <form> -->
+            <input  id="searchbox" type="text" placeholder="Search..">
+            <button onclick="search()">Search</button>
+            <p id="demo"></p>
+        <!-- </form> -->
+            
         {% for name in profile %}
             <a href="{% url 'FindApp:page' name.pk %}"><p>{{ name.name }} {{ name.last_name }}</p></a>
             <!-- <a href="/media/{{ name.image }}/"><img src="/media/{{ name.image }}/" width="82" height="86" ></a> -->
         {% endfor %}
+<script>
+    function search()
+    {
+        console.log("Click");
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            respond = this.responseText
+            document.getElementById("demo").innerHTML = respond;
+            console.log(respond)
+            // var show = respond['name']
+            // var show = respond.name
+            // document.getElementById("demo").innerHTML = show;
 
+        }
+        var url = "api/profile/?format=json&search=" + document.getElementById("searchbox").value
+        console.log(document.getElementById("searchbox").innerHTML)
+        console.log(url)
+        xhttp.open("GET", url , true);
+        xhttp.send();
+    }
+</script>
 {% endblock %}
