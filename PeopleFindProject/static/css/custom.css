@@ -71,6 +71,7 @@
   font-size: 18px;
 }
 
+
 .content {
   min-height: calc(100vh - 130px - 403px);
 }
@@ -218,3 +219,4 @@
     flex-direction: column;
   }
 }
+

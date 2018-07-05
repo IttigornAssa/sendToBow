@@ -32,25 +32,35 @@
                 <!-- <img src="static/main-logo.svg" class="main-logo"> -->
                 <img src="{% static 'main-logo.svg' %}" class="main-logo">
               </div>
-              <div class="uk-navbar-right">
-                <ul class="uk-navbar-nav uk-visible@l">
-                  <li><a class="menu"><span >หน้าหลัก</span></a></li> 
-                  <li><a class="menu"><span >เกี่ยวกับ SCI</span></a></li>
-                  <li><a class="menu"><span >ค้นหาข้อมูลวิจัย</span></a></li>
-                  <li><a class="menu"><span >ติดต่อสอบถาม</span></a></li>          
-                </ul>
-                <div class="dropdown uk-hidden@l">
-                  <a class="uk-navbar-toggle" uk-navbar-toggle-icon></a>
-                  <div uk-dropdown="pos: bottom-right; mode: click; animation: uk-animation-slide-top-small; duration: 500">
-                    <ul class="uk-nav uk-dropdown-nav">
-                      <li><a class="menu"><span >หน้าหลัก</span></a></li> 
-                      <li><a class="menu"><span >เกี่ยวกับ SCI</span></a></li>
-                      <li><a class="menu"><span >ค้นหาข้อมูลวิจัย</span></a></li>
-                      <li><a class="menu"><span >ติดต่อสอบถาม</span></a></li> 
+              {% if user.is_authenticated %}
+                <div class="uk-navbar-right">
+                    <ul class="uk-navbar-nav uk-visible@l">
+                        <li><a class="menu" href="{% url 'FindApp:form' %}" ><span >Edit Profile</span></a></li>
+                        <li><a class="menu" href="{% url 'logout' %}"><span >Logout</span></a></li>
+                        <li  class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid style=" padding: 10px;">
+                            <img class="uk-comment-avatar" src="{% static 'avatar.png' %}" alt="" >
+                            <h3 class="uk-comment-title uk-margin-remove">{{user.username}}</h3>
+
+                        </li>
                     </ul>
-                  </div>
+                    <div class="dropdown uk-hidden@l">
+                        <a class="uk-navbar-toggle" uk-navbar-toggle-icon></a>
+                        <div uk-dropdown="pos: bottom-right; mode: click; animation: uk-animation-slide-top-small; duration: 500">
+                          <ul class="uk-nav uk-dropdown-nav">
+                            <li><a class="menu" href="{% url 'FindApp:form' %}" ><span >Edit Profile</span></a></li>
+                            <li><a class="menu" href="{% url 'logout' %}" ><span >Logout</span></a></li>
+                          </ul>
+                        </div>
+                      </div>
                 </div>
+                {% else %}
+              <div class="uk-navbar-right">
+                <form action="{% url 'social:begin' 'tu' %}">
+                  <input class="uk-button uk-button-primary" type="submit" value='TU Login'>
+                </form>
               </div>
+              {% endif %}
+            
             </nav>
           </div>
         </div>
