@@ -74,6 +74,17 @@
 
 .content {
   min-height: calc(100vh - 130px - 403px);
+  margin: 30px;
+}
+
+.uk-button-primary {
+  background-color: #c00832;
+  color: white;
+  margin-right: 20px;
+}
+
+.uk-button-primary:hover {
+  background-color: #a80228;
 }
 
 .page-footer {
@@ -197,7 +208,7 @@
   }
 }
 /* 1280px section */
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1080px) {
   .footer-flex {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -212,7 +223,7 @@
   }
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1080px) {
   .footer-flex {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;

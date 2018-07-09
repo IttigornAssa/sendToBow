@@ -2,40 +2,53 @@
 {% block title %}{{profile.prefix_name}}{{profile.name}} {{profile.last_name }}{% endblock %}
 {% block content %}  
 <body>
+    <h3>Edit Your Profile</h3>
         <form action="" method="post" enctype="multipart/form-data">
-            
             {% csrf_token %}
+           
             {% for f in form %}
-                {{f.name}}
-                {{f}}
-                {{f.labels}}
-                <br>
+                <div style="display: flex">
+                    <div style="width: 150px; margin: 5px;">
+                        <h5>{{f.name}}</h5>
+                        {{f.labels}} 
+                    </div>
+                    <div style="margin: 5px;width: 400px">
+                    {% if f.types == CharField %}
+                        <input class="uk-input" data-ng-pluralize="{{f}}">
+                    {% else %}
+                        <p>else</p>
+                    {% endif %}
+                        <!-- {{f}}  -->
+                    </div>
+                </div>
             {% endfor %}
+            <input class="uk-button uk-button-primary " type="submit" value="Submit" />
+
             {% for f in formPosition %}
-                {{f.name}}
+                {{f.name}} <h1>formposition</h1>
                 {{f}}
                 {{f.labels}}
             {% endfor %}
-            <br>
+            
             {% for f in formJobdiscription %}
-                {{f.name}}
+                {{f.name}}<h1>formjob</h1>
                 {{f}}
                 {{f.labels}}
             {% endfor %}
-            <br>
+            
             {% for f in formSubdivision %}
-                {{f.name}}
+                {{f.name}}<h1>formsub</h1>
                 {{f}}
                 {{f.labels}}
             {% endfor %}
-            <br>
+            
             {% for f in formDivision %}
-                {{f.name}}
+                {{f.name}}<h1>formdi</h1>
                 {{f}}
                 {{f.labels}}
             {% endfor %}
-            <br>
-            <input type="submit" value="Submit" />
+            
+            
         </form>
         
 </body>
