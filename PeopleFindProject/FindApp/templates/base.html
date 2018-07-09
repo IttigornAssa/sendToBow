@@ -30,7 +30,7 @@
             <nav class="uk-navbar-container" uk-navbar="mode: click">
               <div class="uk-navbar-left">
                 <!-- <img src="static/main-logo.svg" class="main-logo"> -->
-                <img src="{% static 'main-logo.svg' %}" class="main-logo">
+                <a href="/"><img src="{% static 'main-logo.svg' %}" class="main-logo"></a> 
               </div>
               {% if user.is_authenticated %}
                 <div class="uk-navbar-right">

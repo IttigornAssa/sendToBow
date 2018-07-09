@@ -7,6 +7,10 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
 from django.contrib.auth.signals import user_logged_in
 from django.core.validators import RegexValidator
+
+from django import forms
+
+
 # Create your models here.
 
 class Department(models.Model):
@@ -82,8 +86,21 @@ class ProfilesForm(ModelForm):
         labels  = {
             "prefix_name" : _("คำนำหน้า"),
             "name" : _("ชื่อ"),
+            "mid_name"    : _("ชื่อกลาง"),
+            "last_name"   : _("นามสกุล"),
+            "image"       : _(""),
+            "email"       : _("อีเมลล์"),
+            "table_no"    : _("เลขที่โต๊ะ"),
+            "room_no"     : _("เลขที่ห้อง"),
+            "position"    : _("ตำแหน่ง"),
+            "department"  : _("สาขา"),
+            "phone_regex" : _("เบอร์โทร."),
+            "phone"       : _("เบอร์"),
+            "memo"        : _("โน้ต"),
         }
         exclude = ['account','role']
+
+
 class PositionForm(ModelForm):
     class Meta:
         model   = Position
@@ -92,6 +109,10 @@ class JobDiscriptionForm(ModelForm):
     class Meta:
         model   = JobDiscription
         fields  = '__all__'
+        labels  = {
+            "discription" : _("รายละเอียด"),
+            "position" : _("ตำแหน่ง"),
+        }
         # exclude = ['position']
 class SubDivisionForm(ModelForm):
     class Meta:

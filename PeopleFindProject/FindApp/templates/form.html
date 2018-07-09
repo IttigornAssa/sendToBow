@@ -9,20 +9,47 @@
     
 </head>
 <body>
+
+    <table border="0">
+        <tr>
+            <td><a href="/media/{{ data.image }}/"><img src="/media/{{ data.image }}/" width="200px" height="100px" ></a></td>
+        </tr>
+        <tr>
+            <td><p>ชื่อ​ : {{data.prefix_name}} {{data.name}} {{data.last_name }} </p></td>
+        </tr>
+        <tr>
+                <td><p>E-mail : {{data.email}}</p></td>
+        </tr>
+        <tr>
+           <td><p>ตำแหน่ง {{position.title}} </p></td>
+        </tr>
+        <tr>
+            <td> <p>ภาควิชา {{department.name}} </p></td>
+        </tr>
+        <tr>
+            <td><p>เบอร์โต๊ะ {{data.table_no}} </p>ุ</td>
+        </tr>
+        <tr>
+            <td><p>เบอร์ห้อง {{data.room_no}} </p></td>
+        </tr>
+        <tr>
+            <td><p>เพิ่มเติม {{data.memo}} </p></td>
+        </tr>
+    </table>
+
+
     
-        <a href="/media/{{ data.image }}/"><img src="/media/{{ data.image }}/" width="82" height="86" ></a>
-        <p>ชื่อ​ : {{data.prefix_name}} {{data.name}} {{data.last_name }} </p>
-        <p>E-mail : {{data.email}}</p>
-        <p>ตำแหน่ง {{position.title}} </p>
-        <p>ภาควิชา {{department.name}} </p>
-        <p>เบอร์โต๊ะ {{data.table_no}} </p>
-        <p>เบอร์ห้อง {{data.room_no}} </p>
-        <p>เพิ่มเติม {{data.memo}} </p>
+        
+        
+       
+        
+        
+        
 
         <form action="/form/{{ data.pk }}/" method="post">{% csrf_token %}
             <input id="name"        name="name"         value="{{ data.name }}">
             <input id="last_name"   name="last_name"    value="{{ data.last_name }}">
-            <input id="email"       name="email"             value="{{data.email}}">
+            <input id="email"       name="email"        value="{{data.email}}">
             <input type="submit" value="OK">
         </form>
 

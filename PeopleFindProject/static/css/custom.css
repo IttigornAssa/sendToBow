@@ -87,6 +87,27 @@
   background-color: #a80228;
 }
 
+.form-lables{
+  width: 150px; 
+
+}
+
+.form-input {
+  width: 450px;
+  padding: 10px 15px;
+  margin: 8px 0;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+
+.form-td {
+  width: 450px;
+  margin-right: 50px;
+  text-align: right;
+  /* box-sizing: border-box; */
+}
+
 .page-footer {
   background-color: #F1F1F3;
   width: calc(100% - 24px);
