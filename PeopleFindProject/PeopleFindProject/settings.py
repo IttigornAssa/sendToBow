@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'rest_framework',
     'django_filters',
+    'widget_tweaks',
 ]
 AUTHENTICATION_BACKENDS = (
     'tuauth.backend.TUOAuth2',

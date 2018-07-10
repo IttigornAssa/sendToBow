@@ -1,16 +1,33 @@
 {% extends "base.html" %}
 {% block title %}{{profile.prefix_name}}{{profile.name}} {{profile.last_name }}{% endblock %}
-{% block content %}  
+{% block content %}
+{% load widget_tweaks %}  
 <body>
+    <h3>Edit Your Profile</h3>
         <form action="" method="post" enctype="multipart/form-data">
-            
             {% csrf_token %}
-            {% for f in formJobdiscription %}
-                {{f.name}}
-                {{f}}
-                {{f.labels}}
-            {% endfor %}
-            <br>
+            <table border="0">
+                {% for f in formJobdiscription %}
+                <tr>
+                    <td class="form-lables">
+                        <h5>{{f.label_tag}}</h5>
+                    </td>
+                    <td>
+                        {% render_field f class="form-input" placeholder=f.name %}
+                    </td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td>
+                        <p></p>
+                    </td>
+                    <td class="form-td">
+                        <input class="uk-button uk-button-primary " type="submit" value="Submit" />
+                    </td>
+                </tr>
+            </table>
+
+            <!-- <br>
             {% for f in formSubdivision %}
                 {{f.name}}
                 {{f}}
@@ -22,8 +39,7 @@
                 {{f}}
                 {{f.labels}}
             {% endfor %}
-            <br>
-            <input type="submit" value="Submit" />
+            <br> -->
         </form>
         
 </body>

@@ -11,6 +11,7 @@
                 </div> 
          </div>
     <!-- </form> -->
+    
     <h4>List Advicesor</h4>
     <div style="width: 300px">
         {% for name in profile %}
@@ -31,11 +32,11 @@
             // console.log(respond)
             if (this.readyState == 4 && this.status == 200) {
                 myObj = JSON.parse(this.responseText);
-                txt += "<table border='0', text-align='left'>"
-                    txt += "Results"
-                    for (x in myObj) {
-                        txt += "<tr><td><a href=''>"+ myObj[x].pk +" "+ myObj[x].name+" "+myObj[x].last_name+ "</a></td></tr>";
-                    }
+                txt += "<table border='0'>"
+                    
+                    myObj.forEach(function(obj) {
+                        txt += `<tr><td align='left'><a href="page/${obj.id}"> ${obj.name} ${obj.last_name} </a></td></tr>`
+                    })
                 txt += "</table>"  
             }
             document.getElementById("demo").innerHTML = txt;

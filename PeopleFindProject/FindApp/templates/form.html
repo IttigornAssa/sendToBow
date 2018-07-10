@@ -18,11 +18,12 @@
         <p>เบอร์โต๊ะ {{data.table_no}} </p>
         <p>เบอร์ห้อง {{data.room_no}} </p>
         <p>เพิ่มเติม {{data.memo}} </p>
+        
 
         <form action="/form/{{ data.pk }}/" method="post">{% csrf_token %}
             <input id="name"        name="name"         value="{{ data.name }}">
             <input id="last_name"   name="last_name"    value="{{ data.last_name }}">
-            <input id="email"       name="email"             value="{{data.email}}">
+            <input id="email"       name="email"        value="{{data.email}}">
             <input type="submit" value="OK">
         </form>
 
