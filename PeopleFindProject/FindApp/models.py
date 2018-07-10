@@ -89,14 +89,14 @@ class ProfilesForm(ModelForm):
             "mid_name"    : _("ชื่อกลาง"),
             "last_name"   : _("นามสกุล"),
             "image"       : _(""),
-            "email"       : _("อีเมลล์"),
+            "email"       : _("อีเมล"),
             "table_no"    : _("เลขที่โต๊ะ"),
             "room_no"     : _("เลขที่ห้อง"),
             "position"    : _("ตำแหน่ง"),
             "department"  : _("สาขา"),
             "phone_regex" : _("เบอร์โทร."),
             "phone"       : _("เบอร์"),
-            "memo"        : _("โน้ต"),
+            "memo"        : _("เพิ่มเติม"),
         }
         exclude = ['account','role']
 

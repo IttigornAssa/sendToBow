@@ -1,6 +1,7 @@
 .body-block {
   width: 100%;
   max-width: 1380px;
+  min-width: 250px;
   height: auto;
   min-height: 100vh;
   margin: 0 auto;
@@ -95,15 +96,17 @@
   width: 450px;
   padding: 10px 15px;
   margin: 8px 0;
-  border-radius: 5px;
+  /* border-radius: 5px; */
+  border:1px solid #c8c6c6;
   box-sizing: border-box;
 }
 
 .form-td {
   width: 450px;
-  margin-right: 50px;
   text-align: right;
-  /* box-sizing: border-box; */
+  padding: 10px 30px;
+  margin: 8px 0;
+  box-sizing: border-box;
 }
 .pic img{
   /* border-radius: 8px; */
@@ -116,13 +119,10 @@
   box-shadow: 0 0 2px 1px #d37305;
 }
 
-
 .detailinfo {
   display: flex;
   padding: 10px;
 }
-
-
 
 
 .page-footer {
@@ -217,6 +217,7 @@
   .navbar .uk-navbar-container {
     margin-top: 24px;
   }
+
 }
 
 @media screen and (max-width: 1380px) {
@@ -244,6 +245,7 @@
     margin: 0;
     background-color: #f2f2f2;
   }
+
 }
 /* 1280px section */
 @media screen and (min-width: 1080px) {
@@ -259,6 +261,7 @@
     margin-right: 32px;
     border-right: solid 1px #c8c6c6;
   }
+
 }
 
 @media screen and (max-width: 1080px) {
@@ -267,5 +270,8 @@
     -webkit-box-direction: normal;
     flex-direction: column;
   }
+
+  
 }
+
 
