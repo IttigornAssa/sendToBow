@@ -89,7 +89,6 @@
 
 .form-lables{
   width: 150px; 
-
 }
 
 .form-input {
@@ -100,13 +99,31 @@
   box-sizing: border-box;
 }
 
-
 .form-td {
   width: 450px;
   margin-right: 50px;
   text-align: right;
   /* box-sizing: border-box; */
 }
+.pic img{
+  /* border-radius: 8px; */
+  margin: 20px; width:250px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+}
+.pic a img:hover {
+  box-shadow: 0 0 2px 1px #d37305;
+}
+
+
+.detailinfo {
+  display: flex;
+  padding: 10px;
+}
+
+
+
 
 .page-footer {
   background-color: #F1F1F3;
